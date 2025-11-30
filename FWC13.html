@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Delius+Unicase:wght@400;700&display=swap" rel="stylesheet">
+  <title>When your designer is high on creativity</title>
+  <style>
+    :root{
+      --bg1: #0f172a;
+      --bg2: #071032;
+      --card-bg: #f6f9ff;
+      --muted: #cbd5e1;
+    }
+  
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,var(--bg1),var(--bg2));
+      color: #000000;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .wrap{
+      min-height:100%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:2rem;
+      padding:3rem 1rem;
+    }
+
+    h1{
+      margin-bottom:-20rem;
+      font-size: 15px;
+      letter-spacing:0.2px;
+      text-align:center;
+      color: #ffffff;
+      text-shadow: 0 4px 18px rgba(0,0,0,0.6);
+      max-width: 260px;
+       font-family: "Delius Unicase", cursive;
+  font-weight: 400;
+  font-style: normal;
+
+    }
+
+    
+
+.container {
+  margin: auto;
+  color: hsl(0, 0%, 30%);
+  font-weight: 900;
+  font-size: 6rem;
+  display: flex;
+}
+
+.toggle {
+  width: 60px;
+  height: 155px;
+  background-color: hsl(0, 0%, 80%);
+  border-radius: 1.7rem;
+  padding: .25rem 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  transition: background-color 300ms 300ms;
+}
+
+.toggle__circle {
+  width: 50px;
+  height: 50px;
+  background-color: hsl(0, 0%, 95%);
+  border-radius: 50%;
+  margin-top: calc(155px - (.25rem * 2) - 50px);
+  transition: margin 500ms ease-in-out;
+}
+
+.toggle-text {
+  display: flex;
+  flex-direction: column;
+  line-height: .8;
+}
+
+#check:checked + .toggle > .toggle__circle {
+  margin-top: 0;
+}
+
+#check:checked + .toggle {
+  background-color: #41a63c;
+}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 class="heading">When your designer is high on creativity</h1>
+
+
+
+<div class="container">
+        <input hidden="" id="check" name="check" type="checkbox">
+        <label class="toggle" for="check">
+            <div class="toggle__circle"></div>
+        </label>
+        <div class="toggle-text">
+            <span>N</span>
+            <span>F</span>
+        </div>
+    </div>
+
+  </div>
+</body>
+</html>

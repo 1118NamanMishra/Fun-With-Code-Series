@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Delius+Unicase:wght@400;700&display=swap" rel="stylesheet">
+  <title>When your designer is high on creativity</title>
+  <style>
+    :root{
+      --bg1: #0f172a;
+      --bg2: #071032;
+      --card-bg: #f6f9ff;
+      --muted: #cbd5e1;
+    }
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,var(--bg1),var(--bg2));
+      color: #eef2ff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .wrap{
+      min-height:100%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:2rem;
+      padding:3rem 1rem;
+    }
+
+    h1{
+      margin:0;
+      font-size: 15px;
+      letter-spacing:0.2px;
+      text-align:center;
+      color: #e6f0ff;
+      text-shadow: 0 4px 18px rgba(0,0,0,0.6);
+      max-width: 260px;
+       font-family: "Delius Unicase", cursive;
+  font-weight: 400;
+  font-style: normal;
+
+    }
+
+
+.tetris-container {
+  --animation-duration: 10s;
+  --grid-size-x: 6;
+  --grid-size-y: 9;
+
+  --square-size: 1rem;
+}
+
+
+.tetris-container {
+  background: rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-sizing: content-box;
+  height: calc(var(--grid-size-y) * var(--square-size));
+  overflow: hidden;
+  position: relative;
+  width: calc(var(--grid-size-x) * var(--square-size));
+}
+.tetris-container::before {
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: var(--square-size) var(--square-size);
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.block {
+  animation-duration: var(--animation-duration);
+  animation-iteration-count: infinite;
+  animation-name: fallBlock;
+  animation-timing-function: linear;
+  display: grid;
+  gap: 0;
+  grid-template-columns: repeat(var(--grid-size-x), var(--square-size));
+  grid-template-rows: repeat(var(--grid-size-y), var(--square-size));
+  position: absolute;
+}
+.block-I {
+  color: #00ffff;
+}
+.block-L {
+  color: #ff3e3e;
+}
+.block-O {
+  color: #ffff00;
+}
+.block-S {
+  color: #ff9d00;
+}
+.block-Z {
+  color: #00ff9d;
+}
+
+.square {
+  --shadow: inset 2px 2px 2px rgba(255, 255, 255, 0.4),
+    inset -2px -2px 2px rgba(0, 0, 0, 0.4);
+
+  animation-duration: var(--animation-duration);
+  animation-iteration-count: infinite;
+  animation-name: clearSquare;
+  animation-timing-function: ease-out;
+  background-color: currentColor;
+  box-shadow: var(--shadow);
+  grid-column-start: var(--square-pos-x);
+  grid-row-start: calc(var(--grid-size-y) - var(--square-pos-y) + 1);
+  height: var(--square-size);
+  width: var(--square-size);
+}
+
+.block:nth-child(1) {
+  --block-index: 1;
+}
+.block:nth-child(2) {
+  --block-index: 2;
+}
+.block:nth-child(3) {
+  --block-index: 3;
+}
+.block:nth-child(4) {
+  --block-index: 4;
+}
+.block:nth-child(5) {
+  --block-index: 5;
+}
+.block:nth-child(6) {
+  --block-index: 6;
+}
+
+
+.block-I .square:nth-child(1) {
+  --square-pos-x: calc(var(--pos-x) + 0);
+  --square-pos-y: calc(var(--pos-y) + 0);
+}
+.block-I .square:nth-child(2) {
+  --square-pos-x: calc(var(--pos-x) + 0);
+  --square-pos-y: calc(var(--pos-y) + 1);
+}
+.block-I .square:nth-child(3) {
+  --square-pos-x: calc(var(--pos-x) + 0);
+  --square-pos-y: calc(var(--pos-y) + 2);
+}
+.block-I .square:nth-child(4) {
+  --square-pos-x: calc(var(--pos-x) + 0);
+  --square-pos-y: calc(var(--pos-y) + 3);
+}
+
+.block-L-90 .square:nth-child(1) {
+  --square-pos-x: calc(var(--pos-x) + 0);
+  --square-pos-y: calc(var(--pos-y) + 0);
+}
+.block-L-90 .square:nth-child(2) {
+  --square-pos-x: calc(var(--pos-x) + 1);
+  --square-pos-y: calc(var(--pos-y) + 0);
+}
+.block-L-90 .square:nth-child(3) {
+  --square-pos-x: calc(var(--pos-x) + 2);
+  --square-pos-y: calc(var(--pos-y) + 0);
+}
+.block-L-90 .square:nth-child(4) {
+  --square-pos-x: calc(var(--pos-x) + 2);
+  --square-pos-y: calc(var(--pos-y) + 1);
+}
+.block-L-270 .square:nth-child(1) {
+  --square-pos-x: calc(var(--pos-x) + 0);
+  --square-pos-y: calc(var(--pos-y) + 0);
+}
+.block-L-270 .square:nth-child(2) {
+  --square-pos-x: calc(var(--pos-x) + 0);
+  --square-pos-y: calc(var(--pos-y) + 1);
+}
+.block-L-270 .square:nth-child(3) {
+  --square-pos-x: calc(var(--pos-x) + 1);
+  --square-pos-y: calc(var(--pos-y) + 1);
+}
+.block-L-270 .square:nth-child(4) {
+  --square-pos-x: calc(var(--pos-x) + 2);
+  --square-pos-y: calc(var(--pos-y) + 1);
+}
+
+.block-O .square:nth-child(1) {
+  --square-pos-x: calc(var(--pos-x) + 0);
+  --square-pos-y: calc(var(--pos-y) + 0);
+}
+.block-O .square:nth-child(2) {
+  --square-pos-x: calc(var(--pos-x) + 1);
+  --square-pos-y: calc(var(--pos-y) + 0);
+}
+.block-O .square:nth-child(3) {
+  --square-pos-x: calc(var(--pos-x) + 0);
+  --square-pos-y: calc(var(--pos-y) + 1);
+}
+.block-O .square:nth-child(4) {
+  --square-pos-x: calc(var(--pos-x) + 1);
+  --square-pos-y: calc(var(--pos-y) + 1);
+}
+
+.block-Z .square:nth-child(1) {
+  --square-pos-x: calc(var(--pos-x) + 1);
+  --square-pos-y: calc(var(--pos-y) + 0);
+}
+.block-Z .square:nth-child(2) {
+  --square-pos-x: calc(var(--pos-x) + 2);
+  --square-pos-y: calc(var(--pos-y) + 0);
+}
+.block-Z .square:nth-child(3) {
+  --square-pos-x: calc(var(--pos-x) + 0);
+  --square-pos-y: calc(var(--pos-y) + 1);
+}
+.block-Z .square:nth-child(4) {
+  --square-pos-x: calc(var(--pos-x) + 1);
+  --square-pos-y: calc(var(--pos-y) + 1);
+}
+
+
+@keyframes fallBlock {
+  0% {
+    bottom: calc(100% * max(0, calc(var(--block-index) - 0)));
+  }
+  13% {
+    bottom: calc(100% * max(0, calc(var(--block-index) - 1)));
+  }
+  26% {
+    bottom: calc(100% * max(0, calc(var(--block-index) - 2)));
+  }
+  39% {
+    bottom: calc(100% * max(0, calc(var(--block-index) - 3)));
+  }
+  52% {
+    bottom: calc(100% * max(0, calc(var(--block-index) - 4)));
+  }
+  65% {
+    bottom: calc(100% * max(0, calc(var(--block-index) - 5)));
+  }
+  78% {
+    bottom: calc(100% * max(0, calc(var(--block-index) - 6)));
+  }
+
+  90% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes clearSquare {
+  0% {
+    background: currentColor;
+    box-shadow: var(--shadow);
+  }
+
+  85% {
+    background: currentColor;
+    box-shadow: var(--shadow);
+  }
+  95% {
+    background: #fff;
+    box-shadow: none;
+  }
+
+  100% {
+    background: #fff;
+    box-shadow: none;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 class="heading">When your designer is high on creativity</h1>
+
+
+
+
+<div class="tetris-container">
+  <div class="block block-L block-L-90" style="--pos-x: 3; --pos-y: 1;">
+    <div class="square"></div>
+    <div class="square"></div>
+    <div class="square"></div>
+    <div class="square"></div>
+  </div>
+  <div class="block block-O" style="--pos-x: 1; --pos-y: 1;">
+    <div class="square"></div>
+    <div class="square"></div>
+    <div class="square"></div>
+    <div class="square"></div>
+  </div>
+  <div class="block block-Z" style="--pos-x: 2; --pos-y: 2;">
+    <div class="square"></div>
+    <div class="square"></div>
+    <div class="square"></div>
+    <div class="square"></div>
+  </div>
+  <div class="block block-O" style="--pos-x: 4; --pos-y: 3;">
+    <div class="square"></div>
+    <div class="square"></div>
+    <div class="square"></div>
+    <div class="square"></div>
+  </div>
+  <div class="block block-L block-L-270" style="--pos-x: 1; --pos-y: 3;">
+    <div class="square"></div>
+    <div class="square"></div>
+    <div class="square"></div>
+    <div class="square"></div>
+  </div>
+  <div class="block block-I" style="--pos-x: 6; --pos-y: 1;">
+    <div class="square"></div>
+    <div class="square"></div>
+    <div class="square"></div>
+    <div class="square"></div>
+  </div>
+</div>
+
+  </div>
+</body>
+</html>
